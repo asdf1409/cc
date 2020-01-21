@@ -1,6 +1,16 @@
+descriptive statistics analysis of using excel
 
-
-
+Srno	Name 	Age	Rating
+1	AA	25	4.23
+2	AA	26	3.24
+3	AA	25	3.98
+4	AA	23	2.56
+5	AA	30	3.2
+6	AA	29	4.6
+7	AA	23	3.8
+8	AA	34	3.78
+9	AA	40	2.98
+10	AA	30	4.8
 
 ###############################################################
 #Practical 1A: Write a python program on descriptive statistics analysis.
@@ -19,3 +29,99 @@ print('############ Standard Deviation ########## ')
 print (df.std())
 print('############ Descriptive Statistics ########## ')
 print (df.describe())
+=================================================================================================================================
+B. Import data from different data sources (from Excel, csv, mysql, sql server, oracle to R/Python/Excel)
+
+SQLite:
+######################################### #######################
+# -*- coding: utf-8 -*-
+################################################################
+import sqlite3 as sq
+import pandas as pd
+################################################################
+Base='C:/VKHCG'
+sDatabaseName=Base + '/01-Vermeulen/00-RawData/SQLite/vermeulen.db'
+conn = sq.connect(sDatabaseName)
+################################################################
+sFileName='C:/VKHCG/01-Vermeulen/01-Retrieve/01-EDS/02-Python/Retrieve_IP_DATA.csv'
+print('Loading :',sFileName)
+IP_DATA_ALL_FIX=pd.read_csv(sFileName,header=0,low_memory=False)
+IP_DATA_ALL_FIX.index.names = ['RowIDCSV']
+sTable='IP_DATA_ALL'
+print('Storing :',sDatabaseName,' Table:',sTable)
+IP_DATA_ALL_FIX.to_sql(sTable, conn, if_exists="replace")
+print('Loading :',sDatabaseName,' Table:',sTable)
+TestData=pd.read_sql_query("select * from IP_DATA_ALL;", conn)
+print('################')
+print('## Data Values')
+print('################')
+print(TestData)
+print('################')
+print('## Data Profile')
+print('################')
+print('Rows :',TestData.shape[0])
+print('Columns :',TestData.shape[1])
+print('################')
+print('### Done!! ############################################')
+
+MySQL:
+Open MySql
+Create a database “DataScience”
+Create a python file and add the following code:
+################ Connection With MySQL ######################
+importmysql.connector
+conn = mysql.connector.connect(host='localhost',
+database='DataScience',
+user='root',
+password='root')
+conn.connect
+if(conn.is_connected):
+print('###### Connection With MySql Established Successfullly ##### ')
+else:
+print('Not Connected -- Check Connection Properites')
+
+Microsoft Excel
+##################Retrieve-Country-Currency.py
+################################################################
+# -*- coding: utf-8 -*-
+################################################################
+importos
+import pandas as pd
+################################################################
+Base='C:/VKHCG'
+################################################################
+sFileDir=Base + '/01-Vermeulen/01-Retrieve/01-EDS/02-Python'
+#if not os.path.exists(sFileDir):
+#os.makedirs(sFileDir)
+################################################################
+CurrencyRawData = pd.read_excel('C:/VKHCG/01-Vermeulen/00-RawData/Country_Currency.xlsx')
+sColumns = ['Country or territory', 'Currency', 'ISO-4217']
+CurrencyData = CurrencyRawData[sColumns]
+CurrencyData.rename(columns={'Country or territory': 'Country', 'ISO-4217':
+'CurrencyCode'}, inplace=True)
+CurrencyData.dropna(subset=['Currency'],inplace=True)
+CurrencyData['Country'] = CurrencyData['Country'].map(lambda x: x.strip())
+CurrencyData['Currency'] = CurrencyData['Currency'].map(lambda x:
+x.strip())
+CurrencyData['CurrencyCode'] = CurrencyData['CurrencyCode'].map(lambda x:
+x.strip())
+print(CurrencyData)
+print('~~~~~~ Data from Excel Sheet Retrived Successfully ~~~~~~~ ')
+################################################################
+sFileName=sFileDir + '/Retrieve-Country-Currency.csv'
+CurrencyData.to_csv(sFileName, index = False)
+################################################################
+====================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
