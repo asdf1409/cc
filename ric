@@ -113,7 +113,28 @@ CurrencyData.to_csv(sFileName, index = False)
 ################################################################
 ====================================================================================================================================
 
-
+Practical No. 2
+Aim : Perform analysis of given secondary data.-------------------------------------------
+1. Determine your research question – Knowing exactly what you are looking for.
+2. Locating data– Knowing what is out there and whether you can gain access to it. A quick Internet search, possibly with the help of a librarian, will reveal a wealth of options.
+3. Evaluating relevance of the data – Considering things like the data’s original purpose, when it was collected, population, sampling strategy/sample, data collection protocols, operationalization of concepts, questions asked, and form/shape of the data.
+4. Assessing credibility of the data – Establishing the credentials of the original researchers, searching for full explication of methods including any problems encountered, determining how consistent the data is with data from other sources, and discovering whether the data has been used in any credible published research.
+b Analysis – This will generally involve a range of statistical processes.
+Example:Analyze the given Population Census Data for Planning and Decision Making by using the size and composition of populations.
+Put the cursor in cell B22 and click on the AutoSum and then click Enter. This will calculate the total population. Then copy the formula in cell D22 across the row 22.To calculate the percent of males in cell E4, enter the formula =-1*100*B4/$D$22 . And copy the formula in cell E4 down to cell E21.
+To calculate the percent of females in cell F4, enter the formula =100*C4/$D$22. Copy the formula in cell F4 down to cell F21.
+To build the population pyramid, we need to choose a horizontal bar chart with two series of data (% male and % female) and the age labels in column A as the Category X-axis labels. Highlight the range A3:A21, hold down the CTRL key and highlight the range E3:F21  
+Under inset tab, under horizontal bar charts select clustered bar chart
+Put the tip of your mouse arrow on the Y-axis (vertical axis) so it says “Category Axis”, right click and chose Format Axis
+Choose Axis options tab and set the major and minor tick mark type to None, Axis labels to Low, and click OK.  
+Click on any of the bars in your pyramid, click right and select “format data series”. Set the Overlap to 100 and Gap Width to 0. Click OK
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
